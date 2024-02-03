@@ -14,6 +14,8 @@ export async function sendNote(note, orderId) {
 
     return res.ok;
   } catch (e) {
-    console.error(e);
+    console.error('Problem sending note', e);
+
+    return Promise.reject(e);
   }
 }

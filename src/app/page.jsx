@@ -10,11 +10,14 @@ export default function Home() {
   useEffect(() => {
     fetchOrder().then(res => {
       setOrder(res);
+    }).catch(e => {
+      console.error(e);
     });
   }, []);
 
   return (
-    <main className="order-page-wrapper flex min-h-screen flex-col items-center justify-between bg-Grey50 pt-4 sm:pt-10">
+    <main
+      className="order-page-wrapper flex min-h-screen flex-col items-center justify-between bg-Grey50 py-4 sm:pt-10">
       {order && <OrderCard order={order}/>}
     </main>
   );

@@ -17,6 +17,7 @@
 }
 
 body {
+  @apply bg-Grey50;
   color: rgb(var(--foreground-rgb));
 }
 

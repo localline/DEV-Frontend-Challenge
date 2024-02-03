@@ -32,6 +32,7 @@ export default function NoteForm({orderId}) {
       <label className={'flex flex-col text-sm gap-2'}>
         Send another note
         <textarea
+          name={'order_note'}
           className={`border border-Grey300 rounded resize-none p-3 text-Grey800 ${error && 'border-2 border-Red600'}`}
           rows="6" value={note}
           onInput={handleInput}/>
@@ -39,7 +40,8 @@ export default function NoteForm({orderId}) {
       <div className={'flex'}>
         {error && <em className={'text-Red500 text-xs my-auto'}>{error}</em>}
         <button className={`button-std w-24 text-sm ml-auto ${loading && 'cursor-not-allowed opacity-50'}`}
-                disabled={loading}>Send note
+                disabled={loading}>
+          Send note
         </button>
       </div>
     </form>

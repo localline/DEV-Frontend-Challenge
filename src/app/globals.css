@@ -20,6 +20,10 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+.order-page-wrapper {
+  background: url('../assets/images/bg_noise_texture.jpg');
+}
+
 @layer base {
   h1 {
     @apply text-3xl font-bold text-Grey800;
@@ -51,6 +55,10 @@ body {
     @apply outline-none relative;
   }
 
+  .button-std {
+    @apply border border-Grey300 py-[9px] px-[13px] rounded;
+  }
+
   label {
     @apply text-xs text-Grey500;
   }
@@ -71,7 +79,7 @@ body {
   }
 
   input[type='checkbox']:checked:hover,
-  input[type='checkbox']:checked:focus, 
+  input[type='checkbox']:checked:focus,
   input[type='radio']:checked:hover,
   input[type='radio']:checked:focus {
     @apply border-Green700 bg-Green700;
@@ -80,6 +88,11 @@ body {
   hr {
     @apply w-full bg-Grey200;
     height: 1px;
+  }
+
+  hr.dashed {
+    border: none;
+    background: repeating-linear-gradient(90deg, theme(colors.Grey200), theme(colors.Grey200) 4px,transparent 4px,transparent 8px);
   }
 
   small {

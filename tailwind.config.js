@@ -8,11 +8,14 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      boxShadow: {
+        card: 'box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05)'
+      },
       colors: {
         White: "#FFFFFF",
 
         Grey000: "#FFFFFF",
-        Grey50: "#F9FAFB",
+        Grey50: "#F8FAFB",
         Grey100: "#F3F4F6",
         Grey200: "#E5E7EB",
         Grey300: "#D1D5DB",

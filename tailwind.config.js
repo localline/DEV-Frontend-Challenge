@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        card: 'box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05)'
+        card: '0px 4px 12px 0px rgba(0, 0, 0, 0.05)'
       },
       colors: {
         White: "#FFFFFF",

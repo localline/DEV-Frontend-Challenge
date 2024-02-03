@@ -6,13 +6,17 @@ export async function sendNote(note, orderId) {
   headers.set('Content-Type', 'application/json')
 
   try {
-    const res = await fetch(`https://vop4f76uc3.execute-api.us-east-1.amazonaws.com/${orderId}`, {
+    const response = await fetch(`https://vop4f76uc3.execute-api.us-east-1.amazonaws.com/${orderId}`, {
       method: 'PATCH',
       headers,
       body: JSON.stringify({order_note: note})
     });
 
-    return res.ok;
+    if (!response.ok) {
+      return Promise.reject(new Error('Problem sending note'));
+    }
+
+    return (await response.json());
   } catch (e) {
     console.error('Problem sending note', e);
 

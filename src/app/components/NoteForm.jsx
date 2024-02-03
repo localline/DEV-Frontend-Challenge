@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {sendNote} from '@/app/services/notes';
 
-export default function NoteForm({orderId}) {
+export default function NoteForm({orderId, onUpdate}) {
   const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,8 +22,11 @@ export default function NoteForm({orderId}) {
     }
 
     setLoading(true);
-    await sendNote(note, orderId);
+
+    const updated = await sendNote(note, orderId);
+    onUpdate(updated);
     setNote('');
+
     setLoading(false);
   }
 

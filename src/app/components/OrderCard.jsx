@@ -8,12 +8,28 @@ import NoteForm from '@/app/components/NoteForm';
 import Image from 'next/image';
 
 import chevronLeft from '@/assets/icons/chevron-left.svg';
+import {useEffect, useState} from 'react';
+import {fetchOrder} from '@/app/services/orders';
 
-export default function OrderCard({order}) {
-  const orderLines = order.order_entries?.map((entry) => <OrderLine key={entry.id} line={entry}/>);
-  const orderDate = moment(order.opened_at).format('dddd, MMMM D YYYY');
+export default function OrderCard() {
+  const [order, setOrder] = useState();
+  const orderLines = order?.order_entries?.map((entry) => <OrderLine key={entry.id} line={entry}/>);
+  const orderDate = moment(order?.opened_at).format('dddd, MMMM D YYYY');
+
+  useEffect(() => {
+    fetchOrder().then(res => {
+      setOrder(res);
+    }).catch(e => {
+      console.error(e);
+    });
+  }, []);
+
+  function onOrderUpdate(order) {
+    setOrder(order);
+  }
 
   return (
+    order &&
     <section id={'order-card'} className={'order-card-wrapper w-full sm:w-2/3 lg:max-w-2xl'}>
       <a className={'flex text-Grey500 font-medium text-sm cursor-pointer hover:underline px-4'}>
         <Image width={6} height={20} className={'inline mr-2 my-auto'} priority src={chevronLeft} alt={'Chevron pointing left'}/>
@@ -37,7 +53,7 @@ export default function OrderCard({order}) {
         <OrderNotes order={order}/>
 
         <hr className={'dashed'}/>
-        <NoteForm orderId={order.id}/>
+        <NoteForm orderId={order.id} onUpdate={onOrderUpdate}/>
       </div>
     </section>
   )
